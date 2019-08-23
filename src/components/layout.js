@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
-
+import Msterhead from "../components/masterhead"
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
@@ -60,10 +60,11 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <header>{header}</header>
+        {/* <header>{header}</header> */}
+        <Msterhead></Msterhead>
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, Built with ss
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>

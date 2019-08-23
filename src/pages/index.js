@@ -5,16 +5,27 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import { useState } from "react";
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props
+function BlogIndex(props) {
+  
+    const { data } = props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
-
+    const [count, setCount] = useState(0);
+    if(props.location !== null) {
+      console.log(props.location);
+    }
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <div>
+       <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      
+      <Layout location={props.location} title={siteTitle}>
         <SEO title="All posts" />
+        
         <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
@@ -43,8 +54,10 @@ class BlogIndex extends React.Component {
           )
         })}
       </Layout>
+      <Link to="/about-css-modules">about</Link>
+      </div>
     )
-  }
+  
 }
 
 export default BlogIndex
